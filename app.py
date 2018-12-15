@@ -41,11 +41,11 @@ def df_creator(tweets):
 
     # Loop through the list of tweets to grab needed info
     for tweet in tweets:
-    date.append(tweet['created_at'])
-    favorite_count.append(tweet['favorite_count'])
-    retweet.append(tweet['retweet_count'])
-    text.append(tweet['full_text'])
-    id_.append(tweet['id'])
+        date.append(tweet['created_at'])
+        favorite_count.append(tweet['favorite_count'])
+        retweet.append(tweet['retweet_count'])
+        text.append(tweet['full_text'])
+        id_.append(tweet['id'])
 
     # Create DF based on WANTED lists
     df = pd.DataFrame({
@@ -75,18 +75,18 @@ def sentiment_analyzer(df):
     # Loop through Tweets
     for text in df['Text']:
 
-    # Run Vader Analysis on each tweet
-    results = analyzer.polarity_scores(text)
-    compound = results["compound"]
-    pos = results["pos"]
-    neu = results["neu"]
-    neg = results["neg"]
+        # Run Vader Analysis on each tweet
+        results = analyzer.polarity_scores(text)
+        compound = results["compound"]
+        pos = results["pos"]
+        neu = results["neu"]
+        neg = results["neg"]
 
-    # Add each value to the appropriate list
-    compound_list.append(compound)
-    positive_list.append(pos)
-    negative_list.append(neg)
-    neutral_list.append(neu)
+        # Add each value to the appropriate list
+        compound_list.append(compound)
+        positive_list.append(pos)
+        negative_list.append(neg)
+        neutral_list.append(neu)
 
     df['Compound Score'] = compound_list
     df['Positve Score'] = positive_list
@@ -104,8 +104,8 @@ def user_tweets(user, api, consumer_key, consumer_secret, access_token, access_t
     # Loop through 25 pages of tweets and grab 500 tweets
     for x in range(1, endpage):
 
-    for tweet in api.user_timeline(target_user, page=x, tweet_mode='extended'):
-      tweets.append(tweet)
+        for tweet in api.user_timeline(target_user, page=x, tweet_mode='extended'):
+          tweets.append(tweet)
 
     # Convert list of dicitonary tweets into a dataframe
     tweet_df = df_creator(tweets)
