@@ -166,12 +166,11 @@ def post_analysis(username):
     response = response.rename(index=str, columns = {'index':'Year'})
 
     # Render response to PNG
-    render_mpl_table(response)
+    render_mpl_table(response).get_figure().savefig('table.png')
 
     # Post DataFrame
     api.update_with_media('table.png', f'Sentimental Analysis of @{username}')
     api.update_with_media('time_plot.png', f'Time Series Graph of @{username}')
-
 
 
 def find_completed_requests():
@@ -214,4 +213,4 @@ while True:
     if next_request:
         post_analysis(next_request)
 
-    time.sleep(100)
+    time.sleep(80)
