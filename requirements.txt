@@ -5,3 +5,4 @@ msgpack-numpy==0.4.3.2
 six==1.11.0
 tweepy==3.6.0
 vaderSentiment==3.2.1
+sentry-sdk==0.6.2

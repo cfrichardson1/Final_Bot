@@ -10,6 +10,9 @@ import six
 import time
 import tweepy
 
+import sentry_sdk
+sentry_sdk.init("https://e2f0d3aea0c9454888527ed1e54992af@sentry.io/1354180")
+
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 import os
@@ -155,7 +158,7 @@ def post_analysis(username):
     response = user_tweets(user=username,api=api,consumer_key=consumer_key,consumer_secret=consumer_secret, access_token=access_token, access_token_secret=access_token_secret, endpage = 200)
 
     # Render response to a time series chart
-    ax = response.plot()
+    ax = response[['Compound Score','Positve Score','Negative Score', 'Neutral Score']].plot()
     fig = ax.get_figure()
     fig.savefig('time_plot.png')
 
@@ -207,4 +210,4 @@ while True:
     if next_request:
         post_analysis(next_request)
 
-    time.sleep(20)
+    time.sleep(180)
