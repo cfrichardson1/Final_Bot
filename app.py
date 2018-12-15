@@ -210,4 +210,4 @@ while True:
     if next_request:
         post_analysis(next_request)
 
-    time.sleep(180)
+    time.sleep(100)
