@@ -59,7 +59,7 @@ def df_creator(tweets):
     # Convert date to datetime dtype
     df['Created'] = [datetime.strptime(date, "%a %b %d %H:%M:%S %z %Y") for date in df['Created']]
 
-return df
+    return df
 
 # Analyze Pulled Tweets and get Compound, Positive, Negative, & Neutral Scores
 def sentiment_analyzer(df):
@@ -95,7 +95,6 @@ def sentiment_analyzer(df):
 
     return df
 
-#
 def user_tweets(user, api, consumer_key, consumer_secret, access_token, access_token_secret,endpage = 26):
     target_user = ('@'+user)
 
@@ -152,7 +151,7 @@ row_colors=['#f1f1f2', 'w'],edge_color='w',bbox=[0, 0, 1, 1],header_columns=0,ax
 
 def post_analysis(username):
 
-    response = user_tweets('Onnit',api=api,consumer_key=consumer_key,consumer_secret=consumer_secret, access_token=access_token, access_token_secret=access_token_secret, endpage = 200)
+    response = user_tweets(user=username,api=api,consumer_key=consumer_key,consumer_secret=consumer_secret, access_token=access_token, access_token_secret=access_token_secret, endpage = 200)
 
     # Render response to a time series chart
     ax = response.plot()
